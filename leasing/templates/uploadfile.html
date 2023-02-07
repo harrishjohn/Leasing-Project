@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+
+<body class="badybg">
+  <section class="uploadbg">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav" style="font-color:white;">
+          <div class="container">
+         <a class="navbar-brand" id="logo" href="http://127.0.0.1:8000/" style="color:orange;">
+            shiash containers</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto" id="navtxt">
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/"> Home </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/">  Containers </a>
+            </li>
+            <li class="nav-item">
+              {% block content %}
+              <a class="nav-link" href="http://127.0.0.1:8000/userlogin/"> {{username}}</a>
+            </li>
+            {% endblock %}
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/userlogin/">  Logout</a>
+            </li>
+          </ul>
+        </div>
+          </div>
+      </nav>
+  </header>
+
+
+
+<section class="bg bg-dark">
+<form class="w-50 mx-auto" method="post" enctype="multipart/form-data" autocomplete="off" style="color: #0f635c;
+background: linear-gradient(to right,#9ADDE6,#76D6E3);
+border-radius: 16px; padding: 10px;">>
+    {% csrf_token %}
+    <h2>UPLOAD DETAILS</h2><hr><br>
+<br>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Title</span>
+        </div>
+        <input type="text" name="name" class="form-control" placeholder="Enter title for the container...." aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <br>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Container ID</span>
+        </div>
+        <input type="text" name="container_id" class="form-control" placeholder="Enter container ID" aria-label="Username" aria-describedby="basic-addon1">
+      </div><br>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Rate per year [USD]</span>
+        </div>
+        <input type="text" name="rate" class="form-control" placeholder="Enter rate per year in [USD]" aria-label="Username" aria-describedby="basic-addon1">
+      </div><br>
+
+      <label for="exampleDataList" class="form-label">Container Type</label>
+<input type="text" name="container_type" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Specify container type...">
+<datalist id="datalistOptions">
+  <option value="Dry shipping container">
+  <option value="Dry high cube shipping container">
+  <option value="Flat rack shipping container">
+  <option value="Open top shipping container">
+  <option value="Ventilated shipping container">
+  <option value="Refrigerated shipping container ">
+  <option value="Tank shipping container">
+
+</datalist>
+<br>
+<label for="exampleDataList" class="form-label">Container Length</label>
+<input type="text" name="container_length" class="form-control" list="datalistOptions2" id="exampleDataList" placeholder="Specify container length...">
+<datalist id="datalistOptions2">
+  <option value="20 ft">
+  <option value="40 ft">
+  <option value="40 ft HC">
+  <option value="45 ft">
+
+</datalist>
+<br>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Container Material</span>
+  </div>
+  <input type="text" name="container_material" class="form-control" placeholder="Specify container material" aria-label="Username" aria-describedby="basic-addon1">
+</div><br>
+
+<label for="exampleDataList" class="form-label">Condition of the Container</label>
+<input type="text" name="container_condition" class="form-control" list="datalistOptions3" id="exampleDataList" placeholder="Specify container length...">
+<datalist id="datalistOptions3">
+  <option value="Brand new">
+  <option value="Used">
+
+</datalist>
+<br>
+<div class="uploadform">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Location</span>
+  </div>
+  <input type="text" name="location" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+</div><br>
+
+<div class="form-group">
+  <label for="exampleFormControlTextarea1">Description</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+</div><br>
+
+<div class="mb-3">
+  <label for="formFileSm" class="form-label">Upload picture of the container</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file" name="picture">
+</div>
+
+<br>
+
+<div class="mb-3">
+  <label for="formFileSm" class="form-label">Posted by</label>
+  <input class="form-control" type="text" name="owner" value="{{username}}" readonly>
+</div>
+
+<button type="submit" class="btn btn-dark">Submit</button><br><br>
+
+</div>
+
+    </form></section><br><br><br>
+    </section>
+
+</body>
+</html>
